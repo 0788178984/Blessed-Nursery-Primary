@@ -1,0 +1,417 @@
+/* Responsive Styles */
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    /* Adjust container width for larger screens */
+    .container {
+        max-width: 1140px;
+    }
+    
+    /* Adjust font sizes for better readability */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    
+    /* Adjust spacing for larger screens */
+    .section-padding {
+        padding: 100px 0;
+    }
+}
+
+/* Tablets and small desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    /* Adjust font sizes */
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.875rem; }
+    h3 { font-size: 1.5rem; }
+    
+    /* Adjust spacing */
+    .section-padding {
+        padding: 80px 0;
+    }
+    
+    /* Adjust header */
+    .main-nav > ul > li {
+        margin-left: 15px;
+    }
+    
+    /* Adjust hero section */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    /* Adjust card layouts */
+    .featured-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    /* Adjust font sizes */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    
+    /* Adjust spacing */
+    .section-padding { padding: 56px 0; }
+    .section-tight { padding: 14px 0; }
+    
+    /* Adjust header */
+    .header-content {
+        padding: 15px 0;
+    }
+    
+    /* Adjust hero section */
+    .hero-content h1 {
+        font-size: 2.25rem;
+    }
+    
+    /* Adjust card layouts */
+    .featured-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Adjust footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .footer-about {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Small tablets and large phones */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        max-width: 540px;
+    }
+    
+    /* Adjust font sizes */
+    h1 { font-size: 1.875rem; }
+    h2 { font-size: 1.625rem; }
+    h3 { font-size: 1.375rem; }
+    
+    /* Adjust spacing */
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    /* Adjust header */
+    .logo img {
+        height: 50px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.25rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.8rem;
+    }
+    
+    /* Adjust hero section */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    /* Adjust card layouts */
+    .featured-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    /* Adjust footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Adjust forms */
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 575px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Adjust font sizes */
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    /* Adjust spacing */
+    .section-padding { padding: 36px 0; }
+    .section-tight { padding: 10px 0; }
+    
+    /* Adjust header */
+    .header-content {
+        padding: 10px 0;
+    }
+    
+    .logo img {
+        height: 45px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.1rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.75rem;
+    }
+    
+    /* Adjust hero section */
+    .hero-content {
+        padding: 80px 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.75rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust card layouts */
+    .featured-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Adjust forms */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    /* Adjust footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-about {
+        text-align: center;
+    }
+    
+    .footer-links, .footer-contact {
+        text-align: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    /* Adjust spacing for mobile */
+    .section-title {
+        margin-bottom: 30px;
+    }
+    
+    /* Adjust buttons for better touch targets */
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    /* Adjust spacing in cards and sections */
+    .card {
+        margin-bottom: 20px;
+    }
+    
+    /* Hide elements that might be less important on mobile */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Show mobile-only elements */
+    .mobile-only {
+        display: block !important;
+    }
+    
+    /* Adjust mobile menu */
+    .mobile-menu {
+        width: 100%;
+    }
+    
+    /* Adjust table layouts */
+    .responsive-table {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Adjust image sizes */
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Very small phones (portrait) */
+@media (max-width: 360px) {
+    /* Further adjustments for very small screens */
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Adjust spacing */
+    .section-padding {
+        padding: 40px 0;
+    }
+    
+    /* Adjust hero section */
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust card layouts */
+    .card {
+        padding: 15px;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-height: 480px) and (orientation: landscape) {
+    /* Adjust header height */
+    .main-header {
+        position: static;
+    }
+    
+    /* Adjust hero section */
+    .hero-content {
+        padding: 40px 0;
+    }
+    
+    /* Reduce spacing */
+    .section-padding { padding: 28px 0; }
+    .section-tight { padding: 8px 0; }
+    
+    /* Adjust font sizes */
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+/* Print styles */
+@media print {
+    /* Hide elements not needed in print */
+    .header, .footer, .mobile-menu-btn, .back-to-top {
+        display: none !important;
+    }
+    
+    /* Adjust typography for print */
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+    
+    /* Ensure links are visible in print */
+    a {
+        text-decoration: underline !important;
+        color: #000 !important;
+    }
+    
+    /* Add URL after links */
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        font-weight: normal;
+    }
+    
+    /* Page breaks */
+    .page-break {
+        page-break-before: always;
+    }
+    
+    /* Prevent page breaks inside important elements */
+    h1, h2, h3, h4, h5, h6, p, img, table, figure {
+        page-break-inside: avoid;
+    }
+    
+    /* Adjust margins */
+    @page {
+        margin: 1.5cm;
+    }
+}
+
+/* High DPI (Retina) displays */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    /* Use higher resolution images for Retina displays */
+    .logo img {
+        background-image: url('../images/logo@2x.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #f0f0f0;
+        --card-bg: #2d2d2d;
+        --border-color: #444;
+    }
+    
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    
+    .card, .form-control, .table {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+    }
+    
+    /* Ensure text remains readable */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color);
+    }
+    
+    /* Adjust link colors for better visibility */
+    a {
+        color: #5d9cec;
+    }
+    
+    a:hover {
+        color: #8ab4f8;
+    }
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Blessed Nursery and Primary School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="icon" type="image/png" href="../logoBlessed.jpg">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 4px solid #16a34a;
+        }
+        
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .login-subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #15803d;
+        }
+        
+        .login-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .back-to-site {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .back-to-site a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-to-site a:hover {
+            color: #16a34a;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="../logoBlessed.jpg" alt="Blessed Nursery and Primary School Logo" class="login-logo">
+            <h1 class="login-title">Admin Login</h1>
+            <p class="login-subtitle">Sign in to access the admin panel</p>
+            
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+            
+            <div class="back-to-site">
+                <a href="../index.html">
+                    <i class="fas fa-arrow-left"></i> Back to Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle login form submission
+            $('#loginForm').submit(function(e) {
+                e.preventDefault();
+                
+                const username = $('#username').val();
+                const password = $('#password').val();
+                
+                // Simple validation
+                if (!username || !password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+                
+                // Disable login button
+                $('#loginBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Signing In...');
+                
+                // Simulate login process (replace with actual authentication)
+                setTimeout(function() {
+                    // For demo purposes, accept any username/password
+                    // In production, this would validate against a database
+                    if (username && password) {
+                        // Store login state in localStorage
+                        localStorage.setItem('adminLoggedIn', 'true');
+                        localStorage.setItem('adminUser', username);
+                        
+                        // Redirect to admin panel
+                        window.location.href = 'index.html';
+                    } else {
+                        showError('Invalid username or password');
+                        $('#loginBtn').prop('disabled', false).html('<i class="fas fa-sign-in-alt"></i> Sign In');
+                    }
+                }, 1500);
+            });
+            
+            // Check if already logged in
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                window.location.href = 'index.html';
+            }
+        });
+        
+        function showError(message) {
+            $('#errorMessage').text(message).show();
+            setTimeout(function() {
+                $('#errorMessage').fadeOut();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Blessed Nursery and Primary School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="icon" type="image/png" href="../logoBlessed.jpg">
+</head>
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../logoBlessed.jpg" alt="Blessed Nursery and Primary School Logo" class="admin-logo">
+            <h3>Admin Panel</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#content" class="nav-link" data-section="content"><i class="fas fa-file-alt"></i> Content Management</a></li>
+                <li><a href="#pages" class="nav-link" data-section="pages"><i class="fas fa-globe"></i> Pages</a></li>
+                <li><a href="#navigation" class="nav-link" data-section="navigation"><i class="fas fa-bars"></i> Navigation</a></li>
+                <li><a href="#news" class="nav-link" data-section="news"><i class="fas fa-newspaper"></i> News & Events</a></li>
+                <li><a href="#programs" class="nav-link" data-section="programs"><i class="fas fa-graduation-cap"></i> Programs</a></li>
+                <li><a href="#staff" class="nav-link" data-section="staff"><i class="fas fa-users"></i> Staff Directory</a></li>
+                <li><a href="#media" class="nav-link" data-section="media"><i class="fas fa-images"></i> Media Library</a></li>
+                        <li><a href="#settings" class="nav-link" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><a href="#backup" class="nav-link" data-section="backup"><i class="fas fa-database"></i> Backup</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> View Site</a>
+            <a href="#" class="btn btn-danger" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="admin-user">
+                    <img src="../images/ACAALI.jpg" alt="Admin User" class="user-avatar">
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Admin Content -->
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>24</h3>
+                            <p>Total Pages</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>News Articles</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>Programs</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>15</h3>
+                            <p>Staff Members</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <i class="fas fa-edit"></i>
+                                    <div class="activity-content">
+                                        <p>Updated Vision & Mission page</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-plus"></i>
+                                    <div class="activity-content">
+                                        <p>Added new news article</p>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-image"></i>
+                                    <div class="activity-content">
+                                        <p>Uploaded new images</p>
+                                        <span class="activity-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3>Quick Actions</h3>
+                            <div class="quick-actions">
+                                <button class="action-btn" data-action="add-page">
+                                    <i class="fas fa-plus"></i>
+                                    Add New Page
+                                </button>
+                                <button class="action-btn" data-action="add-news">
+                                    <i class="fas fa-newspaper"></i>
+                                    Add News Article
+                                </button>
+                                <button class="action-btn" data-action="add-program">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    Add Program
+                                </button>
+                                <button class="action-btn" data-action="upload-media">
+                                    <i class="fas fa-upload"></i>
+                                    Upload Media
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Management Section -->
+            <section id="content" class="content-section">
+                <div class="section-header">
+                    <h2>Content Management</h2>
+                    <button class="btn btn-primary" id="addContentBtn">
+                        <i class="fas fa-plus"></i> Add Content
+                    </button>
+                </div>
+                <div class="content-filters">
+                    <select id="contentTypeFilter">
+                        <option value="all">All Content</option>
+                        <option value="pages">Pages</option>
+                        <option value="news">News</option>
+                        <option value="programs">Programs</option>
+                    </select>
+                    <input type="text" id="contentSearch" placeholder="Search content...">
+                </div>
+                <div class="content-list" id="contentList">
+                    <!-- Content items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Pages Section -->
+            <section id="pages" class="content-section">
+                <div class="section-header">
+                    <h2>Pages Management</h2>
+                    <button class="btn btn-primary" id="addPageBtn">
+                        <i class="fas fa-plus"></i> Add Page
+                    </button>
+                </div>
+                <div class="pages-grid" id="pagesGrid">
+                    <!-- Pages will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Navigation Section -->
+            <section id="navigation" class="content-section">
+                <div class="section-header">
+                    <h2>Navigation Management</h2>
+                </div>
+                <div class="navigation-editor">
+                    <div class="nav-tree" id="navTree">
+                        <!-- Navigation tree will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- News & Events Section -->
+            <section id="news" class="content-section">
+                <div class="section-header">
+                    <h2>News & Events Management</h2>
+                    <button class="btn btn-primary" id="addNewsBtn">
+                        <i class="fas fa-plus"></i> Add News/Event
+                    </button>
+                </div>
+                <div class="news-list" id="newsList">
+                    <!-- News items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Programs Section -->
+            <section id="programs" class="content-section">
+                <div class="section-header">
+                    <h2>Programs Management</h2>
+                    <button class="btn btn-primary" id="addProgramBtn">
+                        <i class="fas fa-plus"></i> Add Program
+                    </button>
+                </div>
+                <div class="programs-list" id="programsList">
+                    <!-- Programs will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Staff Directory Section -->
+            <section id="staff" class="content-section">
+                <div class="section-header">
+                    <h2>Staff Directory Management</h2>
+                    <button class="btn btn-primary" id="addStaffBtn">
+                        <i class="fas fa-plus"></i> Add Staff Member
+                    </button>
+                </div>
+                <div class="staff-list" id="staffList">
+                    <!-- Staff members will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Media Library Section -->
+            <section id="media" class="content-section">
+                <div class="section-header">
+                    <h2>Media Library</h2>
+                    <button class="btn btn-primary" id="uploadMediaBtn">
+                        <i class="fas fa-upload"></i> Upload Media
+                    </button>
+                </div>
+                <div class="media-filters">
+                    <select id="mediaTypeFilter">
+                        <option value="all">All Media</option>
+                        <option value="images">Images</option>
+                        <option value="documents">Documents</option>
+                        <option value="videos">Videos</option>
+                    </select>
+                </div>
+                <div class="media-grid" id="mediaGrid">
+                    <!-- Media items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <h2>Site Settings</h2>
+                    <div class="settings-actions">
+                        <button class="btn btn-secondary" id="exportSettingsBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-secondary" id="importSettingsBtn">
+                            <i class="fas fa-upload"></i> Import
+                        </button>
+                        <button class="btn btn-primary" id="saveSettingsBtn">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </div>
+                    <input type="file" id="importSettingsFile" accept=".json" style="display: none;">
+                </div>
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="general">General</button>
+                    <button class="tab-btn" data-tab="appearance">Appearance</button>
+                    <button class="tab-btn" data-tab="contact">Contact Info</button>
+                    <button class="tab-btn" data-tab="seo">SEO</button>
+                    <button class="tab-btn" data-tab="email">Email</button>
+                    <button class="tab-btn" data-tab="security">Security</button>
+                </div>
+                <div class="settings-content">
+                    <div id="general" class="tab-content active">
+                        <h3>General Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="siteTitle">Site Title</label>
+                                <input type="text" id="siteTitle" value="Blessed Nursery and Primary School">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteDescription">Site Description</label>
+                                <textarea id="siteDescription" rows="3">A leading educational institution committed to academic excellence and community transformation.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="siteUrl">Site URL</label>
+                                <input type="url" id="siteUrl" value="https://blessednursery.ac.ug">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminEmail">Admin Email</label>
+                                <input type="email" id="adminEmail" value="admin@blessednursery.ac.ug">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteLogo">Site Logo</label>
+                                <input type="file" id="siteLogo" accept="image/*">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="appearance" class="tab-content">
+                        <h3>Appearance Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="primaryColor">Primary Color</label>
+                                <input type="color" id="primaryColor" value="#16a34a">
+                            </div>
+                            <div class="form-group">
+                                <label for="secondaryColor">Secondary Color</label>
+                                <input type="color" id="secondaryColor" value="#1f2937">
+                            </div>
+                            <div class="form-group">
+                                <label for="accentColor">Accent Color</label>
+                                <input type="color" id="accentColor" value="#22c55e">
+                            </div>
+                            <div class="form-group">
+                                <label for="fontFamily">Font Family</label>
+                                <select id="fontFamily">
+                                    <option value="Roboto">Roboto</option>
+                                    <option value="Arial">Arial</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="contact" class="tab-content">
+                        <h3>Contact Information</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="contactPhone">Phone Number</label>
+                                <input type="tel" id="contactPhone" value="+256 772 990 845">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" value="info@blessednursery.ac.ug">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactAddress">Address</label>
+                                <textarea id="contactAddress" rows="3">123 Education Road, Kampala, Uganda</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="workingHours">Working Hours</label>
+                                <input type="text" id="workingHours" value="Mon - Fri: 8:00 AM - 5:00 PM">
+                            </div>
+                            <h4>Social Media</h4>
+                            <div class="form-group">
+                                <label for="facebookUrl">Facebook URL</label>
+                                <input type="url" id="facebookUrl" value="https://facebook.com/blessednursery">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitterUrl">Twitter URL</label>
+                                <input type="url" id="twitterUrl" value="https://twitter.com/blessednursery">
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedinUrl">LinkedIn URL</label>
+                                <input type="url" id="linkedinUrl" value="https://linkedin.com/company/blessednursery">
+                            </div>
+                            <div class="form-group">
+                                <label for="youtubeUrl">YouTube URL</label>
+                                <input type="url" id="youtubeUrl" value="https://youtube.com/blessednursery">
+                            </div>
+                            <div class="form-group">
+                                <label for="instagramUrl">Instagram URL</label>
+                                <input type="url" id="instagramUrl" value="https://instagram.com/blessednursery">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="seo" class="tab-content">
+                        <h3>SEO Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="metaDescription">Meta Description</label>
+                                <textarea id="metaDescription" rows="3">Blessed Nursery and Primary School - A leading educational institution committed to nurturing young minds and academic excellence.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="metaKeywords">Meta Keywords</label>
+                                <input type="text" id="metaKeywords" value="education, university, Uganda, academic excellence">
+                            </div>
+                            <div class="form-group">
+                                <label for="googleAnalytics">Google Analytics ID</label>
+                                <input type="text" id="googleAnalytics" placeholder="GA-XXXXXXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label for="googleSearchConsole">Google Search Console</label>
+                                <input type="text" id="googleSearchConsole" placeholder="Search Console verification code">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-secondary" id="generateSitemapBtn">
+                                    <i class="fas fa-sitemap"></i> Generate Sitemap
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="generateRobotsBtn">
+                                    <i class="fas fa-robot"></i> Generate Robots.txt
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="email" class="tab-content">
+                        <h3>Email Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="smtpHost">SMTP Host</label>
+                                <input type="text" id="smtpHost" value="smtp.gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpPort">SMTP Port</label>
+                                <input type="number" id="smtpPort" value="587">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpUsername">SMTP Username</label>
+                                <input type="email" id="smtpUsername">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpPassword">SMTP Password</label>
+                                <input type="password" id="smtpPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="fromEmail">From Email</label>
+                                <input type="email" id="fromEmail" value="noreply@blessednursery.ac.ug">
+                            </div>
+                            <div class="form-group">
+                                <label for="fromName">From Name</label>
+                                <input type="text" id="fromName" value="Blessed Nursery and Primary School">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="security" class="tab-content">
+                        <h3>Security Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="sessionTimeout">Session Timeout (minutes)</label>
+                                <input type="number" id="sessionTimeout" value="30" min="5" max="480">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxLoginAttempts">Max Login Attempts</label>
+                                <input type="number" id="maxLoginAttempts" value="5" min="3" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordMinLength">Minimum Password Length</label>
+                                <input type="number" id="passwordMinLength" value="8" min="6" max="20">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="requireTwoFactor"> Require Two-Factor Authentication
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="allowedFileTypes">Allowed File Types</label>
+                                <input type="text" id="allowedFileTypes" value="jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxFileSize">Max File Size (MB)</label>
+                                <input type="number" id="maxFileSize" value="10" min="1" max="100">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Backup Section -->
+            <section id="backup" class="content-section">
+                <div class="section-header">
+                    <h2>Backup & Restore</h2>
+                    <div class="backup-actions">
+                        <button class="btn btn-primary" id="createBackupBtn">
+                            <i class="fas fa-plus"></i> Create Backup
+                        </button>
+                        <button class="btn btn-secondary" id="downloadBackupBtn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-secondary" id="uploadBackupBtn">
+                            <i class="fas fa-upload"></i> Upload
+                        </button>
+                        <button class="btn btn-secondary" id="restoreBackupBtn">
+                            <i class="fas fa-undo"></i> Restore
+                        </button>
+                    </div>
+                    <input type="file" id="backupFileInput" accept=".json" style="display: none;">
+                </div>
+                
+                <div class="backup-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalBackups">0</h3>
+                            <p>Total Backups</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalSize">0 MB</h3>
+                            <p>Storage Used</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="lastBackup">Never</h3>
+                            <p>Last Backup</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="autoBackup">On</h3>
+                            <p>Auto Backup</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="backup-settings">
+                    <h3>Backup Settings</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="autoBackupEnabled" checked> Enable Auto Backup
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="backupFrequency">Backup Frequency</label>
+                            <select id="backupFrequency">
+                                <option value="hourly">Hourly</option>
+                                <option value="daily" selected>Daily</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="backupRetention">Retention Period (days)</label>
+                            <input type="number" id="backupRetention" value="30" min="1" max="365">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="saveBackupSettings">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </form>
+                </div>
+
+                <div class="backup-list">
+                    <h3>Available Backups</h3>
+                    <div id="backupListContent">
+                        <!-- Backup list will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal" id="contentModal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Content</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancel">Cancel</button>
+                <button class="btn btn-primary" id="modalSave">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/admin-api.js"></script>
+    <script src="assets/js/content-manager.js"></script>
+    <script src="assets/js/page-editor.js"></script>
+    <script src="assets/js/settings-manager.js"></script>
+    <script src="assets/js/backup-manager.js"></script>
+</body>
+</html>
+
