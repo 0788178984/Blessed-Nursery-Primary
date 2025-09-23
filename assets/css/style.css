@@ -847,19 +847,22 @@ ol.steps li { margin-bottom: 10px; }
     display: flex;
     flex-direction: column;
     line-height: 1.2;
+    margin-left: 20px;
 }
 
 .school-name-main {
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-weight: 800;
+    font-size: 1.6rem;
     color: var(--primary-color);
+    letter-spacing: 0.5px;
 }
 
 .school-name-sub {
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 1.3rem;
     color: var(--dark-gray);
     margin-top: -2px;
+    letter-spacing: 0.3px;
 }
 
 .section-school-name {
@@ -932,15 +935,33 @@ ol.steps li { margin-bottom: 10px; }
     margin-top: -2px;
 }
 
+.inline-school-name {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.inline-school-main {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.inline-school-sub {
+    font-weight: 500;
+    color: var(--dark-gray);
+    margin-top: -2px;
+}
+
 .logo-text p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #16a34a;
     margin: 8px 0 0 0;
     font-family: 'Georgia', 'Times New Roman', serif;
     font-style: italic;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
+    word-spacing: 2px;
 }
 
 /* Navigation */
@@ -2490,17 +2511,26 @@ ol.steps li { margin-bottom: 10px; }
         font-size: 1.2rem;
     }
     
+    .school-name {
+        margin-left: 15px;
+    }
+    
     .school-name-main {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 800;
+        letter-spacing: 0.3px;
     }
     
     .school-name-sub {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.2px;
     }
     
     .logo-text p {
-        font-size: 0.85rem;
-        letter-spacing: 0.3px;
+        font-size: 0.9rem;
+        letter-spacing: 0.8px;
+        word-spacing: 1px;
     }
     
     .hero-slider {
