@@ -10,6 +10,83 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
     <link rel="icon" type="image/png" href="../logoBlessed.jpg">
+    <style>
+        .value-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #15803d, #16a34a);
+        }
+        
+        .value-card h4 {
+            color: #1f2937;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .value-card p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .value-card:nth-child(1) .value-icon { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .value-card:nth-child(2) .value-icon { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+        .value-card:nth-child(3) .value-icon { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .value-card:nth-child(4) .value-icon { background: linear-gradient(135deg, #ef4444, #f87171); }
+        .value-card:nth-child(5) .value-icon { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+        .value-card:nth-child(6) .value-icon { background: linear-gradient(135deg, #16a34a, #22c55e); }
+        
+        .value-card:nth-child(1):hover .value-icon { background: linear-gradient(135deg, #d97706, #f59e0b); }
+        .value-card:nth-child(2):hover .value-icon { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+        .value-card:nth-child(3):hover .value-icon { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+        .value-card:nth-child(4):hover .value-icon { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .value-card:nth-child(5):hover .value-icon { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+        .value-card:nth-child(6):hover .value-icon { background: linear-gradient(135deg, #15803d, #16a34a); }
+    </style>
 </head>
 <body>
     <div class="top-bar">
@@ -110,15 +187,64 @@
                 </div>
             </div>
             <div class="section-title text-center mt-5">
-                <h2>Core Values</h2>
+                <h2>Our Core Values</h2>
+                <p>Guiding principles that define our institution and shape our educational approach</p>
             </div>
-            <div class="cards-grid three">
-                <div class="value-card"><i class="fas fa-star"></i><h3>Excellence</h3></div>
-                <div class="value-card"><i class="fas fa-shield-alt"></i><h3>Integrity</h3></div>
-                <div class="value-card"><i class="fas fa-lightbulb"></i><h3>Innovation</h3></div>
-                <div class="value-card"><i class="fas fa-users"></i><h3>Community</h3></div>
-                <div class="value-card"><i class="fas fa-globe-africa"></i><h3>Relevance</h3></div>
-                <div class="value-card"><i class="fas fa-hand-holding-heart"></i><h3>Service</h3></div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Excellence</h4>
+                        <p>We strive for the highest standards in all our academic and administrative endeavors, ensuring quality education and service delivery.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Integrity</h4>
+                        <p>We uphold the highest ethical standards in all our interactions, operations, and decision-making processes.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p>We embrace creativity and continuously seek new ideas to enhance learning, teaching, and research methodologies.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Community</h4>
+                        <p>We foster a supportive, inclusive, and collaborative environment that values diversity and mutual respect.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <h4>Relevance</h4>
+                        <p>We ensure our programs and research address current and future needs of society and industry.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Service</h4>
+                        <p>We are committed to serving our children, staff, and the wider community with dedication and care.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
