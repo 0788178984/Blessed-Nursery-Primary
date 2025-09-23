@@ -151,6 +151,40 @@
             color: #16a34a;
             margin-bottom: 10px;
         }
+        
+        /* Responsive design for stats */
+        @media (max-width: 768px) {
+            .stats-container {
+                gap: 15px;
+                padding: 0 10px;
+            }
+            
+            .stat-card {
+                min-width: 120px;
+                padding: 20px 15px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .stat-card {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -241,30 +275,22 @@
     <!-- Impact Section -->
     <section class="impact-stats">
         <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="592">592</div>
-                        <div class="stat-label">Students Served</div>
-                    </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-count="592">592</div>
+                    <div class="stat-label">Students Served</div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="15">15</div>
-                        <div class="stat-label">Dedicated Staff</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="15">15</div>
+                    <div class="stat-label">Dedicated Staff</div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="4">4</div>
-                        <div class="stat-label">Years of Service</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="4">4</div>
+                    <div class="stat-label">Years of Service</div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="100">100%</div>
-                        <div class="stat-label">Rural Focus</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="100">100%</div>
+                    <div class="stat-label">Rural Focus</div>
                 </div>
             </div>
         </div>
