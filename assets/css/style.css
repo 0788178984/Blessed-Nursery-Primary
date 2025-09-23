@@ -41,6 +41,25 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.hero-school-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.hero-school-main {
+    font-weight: 700;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-school-sub {
+    font-weight: 400;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: -5px;
+}
+
 .slide-content p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
@@ -824,10 +843,104 @@ ol.steps li { margin-bottom: 10px; }
     color: var(--primary-color);
 }
 
-.logo-text p {
-    font-size: 0.9rem;
+.school-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.school-name-main {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.school-name-sub {
+    font-weight: 400;
+    font-size: 1.2rem;
     color: var(--dark-gray);
-    margin: 0;
+    margin-top: -2px;
+}
+
+.section-school-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.section-school-main {
+    font-weight: 700;
+    color: #16a34a;
+}
+
+.section-school-sub {
+    font-weight: 400;
+    color: #16a34a;
+    margin-top: -2px;
+}
+
+.cta-school-name {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.cta-school-main {
+    font-weight: 700;
+}
+
+.cta-school-sub {
+    font-weight: 400;
+    margin-top: -2px;
+}
+
+.news-school-main {
+    font-weight: 700;
+}
+
+.news-school-sub {
+    font-weight: 400;
+}
+
+.footer-school-name {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.footer-school-main {
+    font-weight: 700;
+}
+
+.footer-school-sub {
+    font-weight: 400;
+    margin-top: -2px;
+}
+
+.footer-copyright-school {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.footer-copyright-main {
+    font-weight: 700;
+}
+
+.footer-copyright-sub {
+    font-weight: 400;
+    margin-top: -2px;
+}
+
+.logo-text p {
+    font-size: 0.95rem;
+    color: #16a34a;
+    margin: 8px 0 0 0;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 /* Navigation */
@@ -2377,8 +2490,17 @@ ol.steps li { margin-bottom: 10px; }
         font-size: 1.2rem;
     }
     
+    .school-name-main {
+        font-size: 1.2rem;
+    }
+    
+    .school-name-sub {
+        font-size: 1rem;
+    }
+    
     .logo-text p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.3px;
     }
     
     .hero-slider {
