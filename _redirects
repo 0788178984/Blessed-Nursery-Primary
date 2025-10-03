@@ -1,0 +1,42 @@
+# Netlify Redirects for Blessed Nursery & Primary School
+# https://blessed-nursery-school.netlify.app
+
+# Redirect www to non-www (canonical domain)
+https://www.blessed-nursery-school.netlify.app/* https://blessed-nursery-school.netlify.app/:splat 301!
+
+# Redirect HTTP to HTTPS
+http://blessed-nursery-school.netlify.app/* https://blessed-nursery-school.netlify.app/:splat 301!
+
+# Redirect old URLs (if any) to new structure
+/about.html /about/history.html 301!
+/programs.html /academics/programs.html 301!
+/calendar.html /academics/calendar.html 301!
+/apply.html /admissions/apply.html 301!
+/news.html /news/index.html 301!
+/contact.html /contact/index.html 301!
+/donate.html /donate/index.html 301!
+
+# Handle trailing slashes consistently
+/about/ /about/history.html 301!
+/academics/ /academics/programs.html 301!
+/admissions/ /admissions/apply.html 301!
+/news/ /news/index.html 301!
+/contact/ /contact/index.html 301!
+/donate/ /donate/index.html 301!
+/elearning/ /elearning/index.html 301!
+
+# API redirects (if needed for future backend integration)
+/api/* /api/:splat 200
+
+# Admin panel redirects
+/admin /admin/login.html 301!
+/admin/ /admin/login.html 301!
+
+# Fallback for SPA routing (if you add JavaScript routing later)
+/* /index.html 200
+
+# Custom 404 page
+/404.html /index.html 404
+
+# Security headers and caching rules are handled in _headers file
+

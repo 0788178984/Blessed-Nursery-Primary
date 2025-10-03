@@ -1,0 +1,122 @@
+# Netlify Headers for Blessed Nursery & Primary School
+# Security and Performance Headers
+
+# Global headers for all files
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';
+
+# HTML files - longer cache for better performance
+/*.html
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Content-Type: text/html; charset=utf-8
+
+# CSS files - long cache
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css
+
+# JavaScript files - long cache
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript
+
+# Images - long cache
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/jpeg
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/jpeg
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/png
+
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/gif
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/svg+xml
+
+# Web fonts
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# PDF files
+/*.pdf
+  Cache-Control: public, max-age=86400
+  Content-Type: application/pdf
+
+# XML files (sitemap, etc.)
+/*.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+
+# JSON files
+/*.json
+  Cache-Control: public, max-age=86400
+  Content-Type: application/json
+
+# Manifest file
+/manifest.json
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
+
+# Robots.txt
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
+
+# Admin area - no cache for security
+/admin/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# API endpoints - no cache
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# Security headers for sensitive files
+/config/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/database/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# SEO-friendly headers for main pages
+/
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+
+/about/*
+  X-Robots-Tag: index, follow
+
+/academics/*
+  X-Robots-Tag: index, follow
+
+/admissions/*
+  X-Robots-Tag: index, follow
+
+/news/*
+  X-Robots-Tag: index, follow
+
+/contact/*
+  X-Robots-Tag: index, follow
+

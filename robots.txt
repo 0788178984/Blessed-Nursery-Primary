@@ -1,0 +1,43 @@
+# Robots.txt for Blessed Nursery & Primary School
+# https://blessed-nursery-school.netlify.app
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the entire site
+Allow: /assets/
+Allow: /images/
+Allow: /Logo/
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /database/
+Disallow: /setup.php
+
+# Disallow temporary and backup files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*.log$
+
+# Allow specific file types
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.pdf$
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://blessed-nursery-school.netlify.app/sitemap.xml
+
+# Additional sitemaps (if you create them later)
+# Sitemap: https://blessed-nursery-school.netlify.app/news-sitemap.xml
+# Sitemap: https://blessed-nursery-school.netlify.app/images-sitemap.xml
+
