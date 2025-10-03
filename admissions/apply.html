@@ -124,27 +124,27 @@
     <section id="application-form" class="section-padding bg-light">
         <div class="container">
             <h2>Application Form</h2>
-            <form class="application-form">
+            <form class="application-form" id="applicationForm">
                 <div class="grid two">
                     <div class="form-group">
                         <label>Child's First Name</label>
-                        <input type="text" required>
+                        <input type="text" name="childFirstName" required>
                     </div>
                     <div class="form-group">
                         <label>Child's Last Name</label>
-                        <input type="text" required>
+                        <input type="text" name="childLastName" required>
                     </div>
                     <div class="form-group">
                         <label>Parent/Guardian Email</label>
-                        <input type="email" required>
+                        <input type="email" name="parentEmail" required>
                     </div>
                     <div class="form-group">
                         <label>Parent/Guardian Phone</label>
-                        <input type="tel" required>
+                        <input type="tel" name="parentPhone" required>
                     </div>
                     <div class="form-group">
                         <label>Program</label>
-                        <select required>
+                        <select name="program" required>
                             <option>Nursery - Early Childhood Development</option>
                             <option>Nursery - Creative Arts & Crafts</option>
                             <option>Nursery - Music & Movement</option>
@@ -158,7 +158,7 @@
                     </div>
                     <div class="form-group">
                         <label>Intake</label>
-                        <select required>
+                        <select name="intake" required>
                             <option>Term 1 (January - March)</option>
                             <option>Term 2 (May - July)</option>
                             <option>Term 3 (September - November)</option>
@@ -166,12 +166,12 @@
                     </div>
                     <div class="form-group">
                         <label>Child's Age</label>
-                        <input type="number" min="3" max="12" required>
+                        <input type="number" name="childAge" min="3" max="12" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Additional Information (Special needs, medical conditions, etc.)</label>
-                    <textarea rows="4" placeholder="Please provide any additional information about your child that we should know..."></textarea>
+                    <textarea name="additionalInfo" rows="4" placeholder="Please provide any additional information about your child that we should know..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Application</button>
             </form>
@@ -244,7 +244,27 @@
     <script src="../assets/js/slider.js"></script>
     <script src="../assets/js/main.js"></script>
     <script>
-    document.querySelector('.application-form')?.addEventListener('submit', function(e){ e.preventDefault(); alert('Application submitted!'); });
+    (function(){
+      const form = document.getElementById('applicationForm');
+      if (!form) return;
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+          const res = await fetch('/.netlify/functions/apply',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+          });
+          const json = await res.json();
+          if (!res.ok) throw new Error(json.error || 'Submit failed');
+          alert('Application submitted successfully! We will contact you soon.');
+          form.reset();
+        } catch(err){
+          alert('Submission failed: ' + err.message);
+        }
+      });
+    })();
     </script>
 </body>
 </html>

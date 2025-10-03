@@ -1,0 +1,10 @@
+{
+  "name": "blessed-nursery-site",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}
+
