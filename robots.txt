@@ -1,5 +1,5 @@
 # Robots.txt for Blessed Nursery & Primary School
-# https://blessed-nursery-school.netlify.app
+# https://blessednursery.netlify.app
 
 User-agent: *
 Allow: /
@@ -35,7 +35,7 @@ Allow: /*.pdf$
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://blessed-nursery-school.netlify.app/sitemap.xml
+Sitemap: https://blessednursery.netlify.app/sitemap.xml
 
 # Additional sitemaps (if you create them later)
 # Sitemap: https://blessed-nursery-school.netlify.app/news-sitemap.xml
