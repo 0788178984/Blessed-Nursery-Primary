@@ -28,10 +28,6 @@ http://blessed-nursery-school.netlify.app/* https://blessed-nursery-school.netli
 # API redirects (if needed for future backend integration)
 /api/* /api/:splat 200
 
-# Admin panel redirects
-/admin /admin/login.html 301!
-/admin/ /admin/login.html 301!
-
 # Fallback for SPA routing (if you add JavaScript routing later)
 /* /index.html 200
 

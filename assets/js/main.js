@@ -1,6 +1,8 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     const primaryPhoneDisplay = '0779654710';
+    const secondaryPhoneDisplay = '0758974955';
+    const combinedPhoneDisplay = `${primaryPhoneDisplay}, ${secondaryPhoneDisplay}`;
     const primaryEmail = 'asiimwelucky34@gmail.com';
 
     function refreshPublicContactDetails() {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         targetSelectors.forEach(selector => {
             document.querySelectorAll(selector).forEach(node => {
                 node.innerHTML = node.innerHTML
-                    .replace(phoneRegex, primaryPhoneDisplay)
+                    .replace(phoneRegex, combinedPhoneDisplay)
                     .replace(emailRegex, primaryEmail);
             });
         });
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.querySelectorAll('a[href^="tel:"]').forEach(link => {
             link.href = `tel:${primaryPhoneDisplay}`;
-            link.textContent = primaryPhoneDisplay;
+            link.textContent = combinedPhoneDisplay;
         });
     }
 
