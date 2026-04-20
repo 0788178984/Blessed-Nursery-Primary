@@ -1,0 +1,83 @@
+{
+  "name": "Blessed Nursery & Primary School",
+  "short_name": "Blessed Nursery",
+  "description": "Quality early childhood and primary education in Kikuube District, Uganda",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "school", "nursery", "primary"],
+  "icons": [
+    {
+      "src": "logoBlessed.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logoBlessed.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/slider/body.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Blessed Nursery & Primary School Homepage"
+    },
+    {
+      "src": "assets/images/slider/students.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Students at Blessed Nursery & Primary School"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Apply Now",
+      "short_name": "Apply",
+      "description": "Apply for admission to Blessed Nursery & Primary School",
+      "url": "/admissions/apply.html",
+      "icons": [
+        {
+          "src": "logoBlessed.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Programs",
+      "short_name": "Programs",
+      "description": "View our educational programs",
+      "url": "/academics/programs.html",
+      "icons": [
+        {
+          "src": "logoBlessed.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact/index.html",
+      "icons": [
+        {
+          "src": "logoBlessed.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
+

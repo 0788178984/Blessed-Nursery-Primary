@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Editor - Blessed Nursery and Primary School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="icon" type="image/png" href="../logoBlessed.jpg">
+    <style>
+        .editor-container {
+            display: flex;
+            height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .editor-sidebar {
+            width: 300px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+        
+        .editor-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-toolbar {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-content {
+            flex: 1;
+            display: flex;
+        }
+        
+        .editor-preview {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: auto;
+        }
+        
+        .editor-properties {
+            width: 300px;
+            background: white;
+            border-left: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+        
+        .sidebar-section {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .sidebar-header {
+            padding: 15px 20px;
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-content {
+            padding: 15px 20px;
+            display: none;
+        }
+        
+        .sidebar-content.active {
+            display: block;
+        }
+        
+        .element-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .element-item {
+            padding: 10px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: grab;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .element-item:hover {
+            background: #f3f4f6;
+            border-color: #16a34a;
+        }
+        
+        .element-item:active {
+            cursor: grabbing;
+        }
+        
+        .element-item i {
+            margin-right: 10px;
+            color: #6b7280;
+        }
+        
+        .drop-zone {
+            min-height: 200px;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #9ca3af;
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #16a34a;
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        .drop-zone.has-content {
+            border-style: solid;
+            border-color: #e5e7eb;
+            background: white;
+        }
+        
+        .page-element {
+            position: relative;
+            border: 1px solid transparent;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-element:hover {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+        
+        .page-element.selected {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+        
+        .element-controls {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #16a34a;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .page-element:hover .element-controls,
+        .page-element.selected .element-controls {
+            display: flex;
+        }
+        
+        .element-controls button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .element-controls button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .properties-form {
+            padding: 20px;
+        }
+        
+        .properties-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .properties-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .properties-form input,
+        .properties-form textarea,
+        .properties-form select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .properties-form input:focus,
+        .properties-form textarea:focus,
+        .properties-form select:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toolbar-btn {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .toolbar-btn:hover {
+            background: #f3f4f6;
+            border-color: #16a34a;
+        }
+        
+        .toolbar-btn.active {
+            background: #16a34a;
+            color: white;
+            border-color: #16a34a;
+        }
+        
+        .toolbar-btn i {
+            margin-right: 5px;
+        }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .element-preview {
+            padding: 20px;
+        }
+        
+        .text-element {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #374151;
+        }
+        
+        .heading-element {
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 10px 0;
+        }
+        
+        .heading-element.h1 { font-size: 32px; }
+        .heading-element.h2 { font-size: 24px; }
+        .heading-element.h3 { font-size: 20px; }
+        .heading-element.h4 { font-size: 18px; }
+        .heading-element.h5 { font-size: 16px; }
+        .heading-element.h6 { font-size: 14px; }
+        
+        .image-element {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .button-element {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #16a34a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .button-element:hover {
+            background: #15803d;
+        }
+        
+        .card-element {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-element .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 10px 0;
+        }
+        
+        .card-element .card-content {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        .section-element {
+            padding: 40px 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .section-element .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+        
+        .section-element .section-content {
+            color: #6b7280;
+            line-height: 1.6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <!-- Sidebar -->
+        <div class="editor-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-header" onclick="toggleSection('elements')">
+                    <span>Elements</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-content active" id="elements">
+                    <ul class="element-list">
+                        <li class="element-item" draggable="true" data-element="heading">
+                            <i class="fas fa-heading"></i> Heading
+                        </li>
+                        <li class="element-item" draggable="true" data-element="text">
+                            <i class="fas fa-paragraph"></i> Text
+                        </li>
+                        <li class="element-item" draggable="true" data-element="image">
+                            <i class="fas fa-image"></i> Image
+                        </li>
+                        <li class="element-item" draggable="true" data-element="button">
+                            <i class="fas fa-square"></i> Button
+                        </li>
+                        <li class="element-item" draggable="true" data-element="card">
+                            <i class="fas fa-id-card"></i> Card
+                        </li>
+                        <li class="element-item" draggable="true" data-element="section">
+                            <i class="fas fa-square"></i> Section
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-header" onclick="toggleSection('templates')">
+                    <span>Templates</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-content" id="templates">
+                    <div class="element-item" onclick="loadTemplate('hero')">
+                        <i class="fas fa-star"></i> Hero Section
+                    </div>
+                    <div class="element-item" onclick="loadTemplate('about')">
+                        <i class="fas fa-info-circle"></i> About Section
+                    </div>
+                    <div class="element-item" onclick="loadTemplate('programs')">
+                        <i class="fas fa-graduation-cap"></i> Programs Section
+                    </div>
+                    <div class="element-item" onclick="loadTemplate('news')">
+                        <i class="fas fa-newspaper"></i> News Section
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-header" onclick="toggleSection('pages')">
+                    <span>Pages</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-content" id="pages">
+                    <div class="element-item" onclick="loadPage('home')">
+                        <i class="fas fa-home"></i> Home
+                    </div>
+                    <div class="element-item" onclick="loadPage('about')">
+                        <i class="fas fa-info"></i> About
+                    </div>
+                    <div class="element-item" onclick="loadPage('programs')">
+                        <i class="fas fa-graduation-cap"></i> Programs
+                    </div>
+                    <div class="element-item" onclick="loadPage('news')">
+                        <i class="fas fa-newspaper"></i> News
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Editor -->
+        <div class="editor-main">
+            <!-- Toolbar -->
+            <div class="editor-toolbar">
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" onclick="savePage()">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button class="toolbar-btn" onclick="previewPage()">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <button class="toolbar-btn" onclick="publishPage()">
+                        <i class="fas fa-upload"></i> Publish
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" onclick="undo()">
+                        <i class="fas fa-undo"></i> Undo
+                    </button>
+                    <button class="toolbar-btn" onclick="redo()">
+                        <i class="fas fa-redo"></i> Redo
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" onclick="goBack()">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="editor-content">
+                <!-- Preview Area -->
+                <div class="editor-preview">
+                    <div class="drop-zone" id="dropZone">
+                        <i class="fas fa-plus-circle" style="font-size: 48px; margin-bottom: 10px;"></i>
+                        <p>Drag elements here to build your page</p>
+                        <p style="font-size: 12px; margin-top: 5px;">Or click on an element in the sidebar</p>
+                    </div>
+                </div>
+                
+                <!-- Properties Panel -->
+                <div class="editor-properties">
+                    <div class="sidebar-header">
+                        <span>Properties</span>
+                    </div>
+                    <div class="properties-form" id="propertiesForm">
+                        <p style="color: #9ca3af; text-align: center; margin-top: 50px;">
+                            Select an element to edit its properties
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let selectedElement = null;
+        let elementCounter = 0;
+        let pageData = {
+            elements: []
+        };
+        
+        $(document).ready(function() {
+            initializeEditor();
+        });
+        
+        function initializeEditor() {
+            // Make elements draggable
+            $('.element-item').on('dragstart', function(e) {
+                e.originalEvent.dataTransfer.setData('text/plain', $(this).data('element'));
+            });
+            
+            // Make drop zone droppable
+            $('#dropZone').on('dragover', function(e) {
+                e.preventDefault();
+                $(this).addClass('drag-over');
+            });
+            
+            $('#dropZone').on('dragleave', function(e) {
+                $(this).removeClass('drag-over');
+            });
+            
+            $('#dropZone').on('drop', function(e) {
+                e.preventDefault();
+                $(this).removeClass('drag-over');
+                
+                const elementType = e.originalEvent.dataTransfer.getData('text/plain');
+                addElement(elementType);
+            });
+            
+            // Click to add element
+            $('.element-item').click(function() {
+                const elementType = $(this).data('element');
+                if (elementType) {
+                    addElement(elementType);
+                }
+            });
+        }
+        
+        function addElement(type) {
+            elementCounter++;
+            const elementId = 'element_' + elementCounter;
+            
+            const element = {
+                id: elementId,
+                type: type,
+                properties: getDefaultProperties(type)
+            };
+            
+            pageData.elements.push(element);
+            renderElement(element);
+            updateDropZone();
+        }
+        
+        function getDefaultProperties(type) {
+            const defaults = {
+                heading: {
+                    text: 'New Heading',
+                    level: 'h2',
+                    alignment: 'left',
+                    color: '#1f2937'
+                },
+                text: {
+                    content: 'This is a new text element. Click to edit.',
+                    alignment: 'left',
+                    color: '#374151'
+                },
+                image: {
+                    src: '../logoBlessed.jpg',
+                    alt: 'Image',
+                    width: '100%',
+                    height: 'auto'
+                },
+                button: {
+                    text: 'Click Me',
+                    link: '#',
+                    style: 'primary',
+                    size: 'medium'
+                },
+                card: {
+                    title: 'Card Title',
+                    content: 'This is the card content. You can edit this text.',
+                    image: ''
+                },
+                section: {
+                    title: 'Section Title',
+                    content: 'This is a section with some content.',
+                    background: '#f8fafc',
+                    padding: '40px'
+                }
+            };
+            
+            return defaults[type] || {};
+        }
+        
+        function renderElement(element) {
+            const elementHtml = createElementHtml(element);
+            const $element = $(elementHtml);
+            
+            // Add click handler for selection
+            $element.click(function(e) {
+                e.stopPropagation();
+                selectElement(element.id);
+            });
+            
+            // Insert before the drop zone
+            $('#dropZone').before($element);
+        }
+        
+        function createElementHtml(element) {
+            const props = element.properties;
+            
+            switch (element.type) {
+                case 'heading':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <${props.level} class="heading-element ${props.level}" style="text-align: ${props.alignment}; color: ${props.color};">
+                                ${props.text}
+                            </${props.level}>
+                        </div>
+                    `;
+                    
+                case 'text':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <p class="text-element" style="text-align: ${props.alignment}; color: ${props.color};">
+                                ${props.content}
+                            </p>
+                        </div>
+                    `;
+                    
+                case 'image':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <img src="${props.src}" alt="${props.alt}" class="image-element" style="width: ${props.width}; height: ${props.height};">
+                        </div>
+                    `;
+                    
+                case 'button':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <a href="${props.link}" class="button-element" style="background: ${props.style === 'primary' ? '#16a34a' : '#6b7280'};">
+                                ${props.text}
+                            </a>
+                        </div>
+                    `;
+                    
+                case 'card':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <div class="card-element">
+                                <h3 class="card-title">${props.title}</h3>
+                                <p class="card-content">${props.content}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                case 'section':
+                    return `
+                        <div class="page-element" data-element-id="${element.id}">
+                            <div class="element-controls">
+                                <button onclick="editElement('${element.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button onclick="duplicateElement('${element.id}')" title="Duplicate"><i class="fas fa-copy"></i></button>
+                                <button onclick="deleteElement('${element.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <div class="section-element" style="background: ${props.background}; padding: ${props.padding};">
+                                <h2 class="section-title">${props.title}</h2>
+                                <p class="section-content">${props.content}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                default:
+                    return '';
+            }
+        }
+        
+        function selectElement(elementId) {
+            // Remove previous selection
+            $('.page-element').removeClass('selected');
+            
+            // Select new element
+            $(`.page-element[data-element-id="${elementId}"]`).addClass('selected');
+            
+            // Find element data
+            selectedElement = pageData.elements.find(el => el.id === elementId);
+            
+            // Show properties
+            showElementProperties(selectedElement);
+        }
+        
+        function showElementProperties(element) {
+            if (!element) return;
+            
+            const props = element.properties;
+            let propertiesHtml = '';
+            
+            switch (element.type) {
+                case 'heading':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Text</label>
+                            <input type="text" value="${props.text}" onchange="updateElementProperty('${element.id}', 'text', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Level</label>
+                            <select onchange="updateElementProperty('${element.id}', 'level', this.value)">
+                                <option value="h1" ${props.level === 'h1' ? 'selected' : ''}>H1</option>
+                                <option value="h2" ${props.level === 'h2' ? 'selected' : ''}>H2</option>
+                                <option value="h3" ${props.level === 'h3' ? 'selected' : ''}>H3</option>
+                                <option value="h4" ${props.level === 'h4' ? 'selected' : ''}>H4</option>
+                                <option value="h5" ${props.level === 'h5' ? 'selected' : ''}>H5</option>
+                                <option value="h6" ${props.level === 'h6' ? 'selected' : ''}>H6</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Alignment</label>
+                            <select onchange="updateElementProperty('${element.id}', 'alignment', this.value)">
+                                <option value="left" ${props.alignment === 'left' ? 'selected' : ''}>Left</option>
+                                <option value="center" ${props.alignment === 'center' ? 'selected' : ''}>Center</option>
+                                <option value="right" ${props.alignment === 'right' ? 'selected' : ''}>Right</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="color" value="${props.color}" onchange="updateElementProperty('${element.id}', 'color', this.value)">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'text':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea onchange="updateElementProperty('${element.id}', 'content', this.value)">${props.content}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Alignment</label>
+                            <select onchange="updateElementProperty('${element.id}', 'alignment', this.value)">
+                                <option value="left" ${props.alignment === 'left' ? 'selected' : ''}>Left</option>
+                                <option value="center" ${props.alignment === 'center' ? 'selected' : ''}>Center</option>
+                                <option value="right" ${props.alignment === 'right' ? 'selected' : ''}>Right</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="color" value="${props.color}" onchange="updateElementProperty('${element.id}', 'color', this.value)">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'image':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" value="${props.src}" onchange="updateElementProperty('${element.id}', 'src', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Alt Text</label>
+                            <input type="text" value="${props.alt}" onchange="updateElementProperty('${element.id}', 'alt', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Width</label>
+                            <input type="text" value="${props.width}" onchange="updateElementProperty('${element.id}', 'width', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Height</label>
+                            <input type="text" value="${props.height}" onchange="updateElementProperty('${element.id}', 'height', this.value)">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'button':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Text</label>
+                            <input type="text" value="${props.text}" onchange="updateElementProperty('${element.id}', 'text', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Link</label>
+                            <input type="text" value="${props.link}" onchange="updateElementProperty('${element.id}', 'link', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <select onchange="updateElementProperty('${element.id}', 'style', this.value)">
+                                <option value="primary" ${props.style === 'primary' ? 'selected' : ''}>Primary</option>
+                                <option value="secondary" ${props.style === 'secondary' ? 'selected' : ''}>Secondary</option>
+                            </select>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'card':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" value="${props.title}" onchange="updateElementProperty('${element.id}', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea onchange="updateElementProperty('${element.id}', 'content', this.value)">${props.content}</textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'section':
+                    propertiesHtml = `
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" value="${props.title}" onchange="updateElementProperty('${element.id}', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea onchange="updateElementProperty('${element.id}', 'content', this.value)">${props.content}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Background Color</label>
+                            <input type="color" value="${props.background}" onchange="updateElementProperty('${element.id}', 'background', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Padding</label>
+                            <input type="text" value="${props.padding}" onchange="updateElementProperty('${element.id}', 'padding', this.value)">
+                        </div>
+                    `;
+                    break;
+            }
+            
+            $('#propertiesForm').html(propertiesHtml);
+        }
+        
+        function updateElementProperty(elementId, property, value) {
+            const element = pageData.elements.find(el => el.id === elementId);
+            if (element) {
+                element.properties[property] = value;
+                renderElement(element);
+                selectElement(elementId);
+            }
+        }
+        
+        function updateDropZone() {
+            if (pageData.elements.length > 0) {
+                $('#dropZone').addClass('has-content').html('<i class="fas fa-plus" style="font-size: 24px; margin-bottom: 10px;"></i><p>Add more elements</p>');
+            }
+        }
+        
+        function deleteElement(elementId) {
+            pageData.elements = pageData.elements.filter(el => el.id !== elementId);
+            $(`.page-element[data-element-id="${elementId}"]`).remove();
+            selectedElement = null;
+            $('#propertiesForm').html('<p style="color: #9ca3af; text-align: center; margin-top: 50px;">Select an element to edit its properties</p>');
+        }
+        
+        function duplicateElement(elementId) {
+            const element = pageData.elements.find(el => el.id === elementId);
+            if (element) {
+                elementCounter++;
+                const newElement = {
+                    id: 'element_' + elementCounter,
+                    type: element.type,
+                    properties: JSON.parse(JSON.stringify(element.properties))
+                };
+                
+                pageData.elements.push(newElement);
+                renderElement(newElement);
+                updateDropZone();
+            }
+        }
+        
+        function editElement(elementId) {
+            selectElement(elementId);
+        }
+        
+        function savePage() {
+            console.log('Saving page:', pageData);
+            // Here you would typically send the data to a server
+            alert('Page saved successfully!');
+        }
+        
+        function previewPage() {
+            // Open preview in new window
+            const previewWindow = window.open('', '_blank');
+            const previewHtml = generatePreviewHtml();
+            previewWindow.document.write(previewHtml);
+        }
+        
+        function publishPage() {
+            if (confirm('Are you sure you want to publish this page?')) {
+                console.log('Publishing page:', pageData);
+                alert('Page published successfully!');
+            }
+        }
+        
+        function generatePreviewHtml() {
+            let html = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Page Preview</title>
+                    <link rel="stylesheet" href="../assets/css/style.css">
+                    <style>
+                        .preview-container { padding: 20px; }
+                        .page-element { margin: 10px 0; }
+                    </style>
+                </head>
+                <body>
+                    <div class="preview-container">
+            `;
+            
+            pageData.elements.forEach(element => {
+                html += createElementHtml(element);
+            });
+            
+            html += `
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            return html;
+        }
+        
+        function toggleSection(sectionId) {
+            $(`#${sectionId}`).toggleClass('active');
+        }
+        
+        function loadTemplate(templateName) {
+            // Load predefined templates
+            console.log('Loading template:', templateName);
+        }
+        
+        function loadPage(pageName) {
+            // Load existing page
+            console.log('Loading page:', pageName);
+        }
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+        
+        function undo() {
+            console.log('Undo');
+        }
+        
+        function redo() {
+            console.log('Redo');
+        }
+    </script>
+</body>
+</html>
