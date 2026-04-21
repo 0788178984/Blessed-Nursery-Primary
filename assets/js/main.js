@@ -1,55 +1,5 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    const primaryPhoneDisplay = '0779654710';
-    const secondaryPhoneDisplay = '0758974955';
-    const combinedPhoneDisplay = `${primaryPhoneDisplay}, ${secondaryPhoneDisplay}`;
-    const primaryEmail = 'asiimwelucky34@gmail.com';
-
-    function refreshPublicContactDetails() {
-        const phoneRegex = /(\+?256[\s-]*777[\s-]*335[\s-]*810(?:,\s*\+?256[\s-]*779[\s-]*220[\s-]*377)?|\+?256[\s-]*779[\s-]*220[\s-]*377)/gi;
-        const emailRegex = /blessedprimaryschool7@gmail\.com/gi;
-
-        const targetSelectors = [
-            '.contact-info',
-            '.footer-contact',
-            '.contact-details',
-            '.contact-card',
-            '.contact-item',
-            'a[href^="mailto:"]',
-            'a[href^="tel:"]'
-        ];
-
-        targetSelectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(node => {
-                node.innerHTML = node.innerHTML
-                    .replace(phoneRegex, combinedPhoneDisplay)
-                    .replace(emailRegex, primaryEmail);
-            });
-        });
-
-        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-            link.href = `mailto:${primaryEmail}`;
-            if (link.textContent.includes('@')) {
-                link.textContent = primaryEmail;
-            }
-        });
-
-        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-            link.href = `tel:${primaryPhoneDisplay}`;
-            link.textContent = combinedPhoneDisplay;
-        });
-    }
-
-    function hideAdminLinksFromPublic() {
-        document.querySelectorAll('a[href*="admin/login.html"], a[href*="/admin/"]').forEach(link => {
-            const wrapper = link.closest('li') || link;
-            wrapper.style.display = 'none';
-        });
-    }
-
-    refreshPublicContactDetails();
-    hideAdminLinksFromPublic();
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mainNav = document.querySelector('.main-nav');
