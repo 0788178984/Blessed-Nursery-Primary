@@ -75,6 +75,15 @@
   Cache-Control: public, max-age=86400
   Content-Type: application/manifest+json
 
+# Favicon files - short cache for faster icon refresh
+/favicon.ico
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: image/vnd.microsoft.icon
+
+/favicon.png
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: image/png
+
 # Robots.txt
 /robots.txt
   Cache-Control: public, max-age=86400

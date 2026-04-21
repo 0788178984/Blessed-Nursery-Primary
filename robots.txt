@@ -27,6 +27,7 @@ Allow: /*.js$
 Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
+Allow: /*.ico$
 Allow: /*.gif$
 Allow: /*.svg$
 Allow: /*.pdf$
